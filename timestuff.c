@@ -11,11 +11,11 @@ void increment_dt(struct dateTime *dto){
 		dto->sec = 0;
 		dto->min += 1;
 	//If the min passes 60, set it to 0 and increment hour
-	} if(dto->min > 60){
+	} if(dto->min >= 60){
 		dto->min = 0;
 		dto->hour += 1;
 	//If the hour passes 24, set it to 0 and increment the day
-	} if(dto->hour > 24){
+	} if(dto->hour >= 24){
 		dto->hour = 0;
 		dto->day += 1;
 	//If the month is <= 12 and there arent enough days in the month

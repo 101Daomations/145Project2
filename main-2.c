@@ -1,5 +1,3 @@
-
-//Rows
 #include <avr/io.h>
 #include "avr.h"
 #include "lcd.h"
