@@ -1,34 +1,32 @@
 #include "timestuff.h"
 
 void increment_dt(struct dateTime *dto){
-	static int daysForMonths[] = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-	//Clock increments 1 second every cycle
 	dto->sec += 1;
-
-	//If the second passes 60, set it to 0 and increment min
 	if(dto->sec >= 60){
 		dto->sec = 0;
 		dto->min += 1;
-	//If the min passes 60, set it to 0 and increment hour
-	} if(dto->min >= 60){
+	}
+	if(dto->min >= 60){
 		dto->min = 0;
 		dto->hour += 1;
-	//If the hour passes 24, set it to 0 and increment the day
-	} if(dto->hour >= 24){
+	}
+	if(dto->hour >= 24){
 		dto->hour = 0;
 		dto->day += 1;
-	//If the month is <= 12 and there arent enough days in the month
-	//increment the month
-	} if(dto->month <= 12 && dto->day > daysForMonths[dto->month]){
+	}
+	static int dim[] = {0,31, 29, 31, 30, 31,30,31,31,30,31,30,31};
+	if(dto->month <= 12&& dto->day > dim[dto->month]){
+		
+		//add array that maps to how many days in each month
 		dto->day = 1;
 		dto->month += 1;
-	//If the month passes 12, increment the year, reset the month and day
-	} if(dto->month > 12){
+	}
+	if(dto->month >= 13){
 		dto->month = 1;
 		dto->day = 1;
 		dto->year += 1;
 	}
+	//add a reset when year gets too high
 }
 
 
