@@ -16,7 +16,7 @@ struct dateTime{
 
 extern int cursor;
 
-void increment_dt(struct dateTime *dt); //increments date/time by 1 second
+void increment_dt(struct dateTime *dto); //increments date/time by 1 second
 void pTime(struct dateTime *dto); //print time to lcd
 void pDate(struct dateTime *dto); //print date to lcd
 void editTimeMode(struct dateTime *mydt); //enter mode to edit time

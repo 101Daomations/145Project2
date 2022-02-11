@@ -1,33 +1,33 @@
 #include "timestuff.h"
 
-void increment_dt(struct dateTime *dt){
+void increment_dt(struct dateTime *dto){
 	static int daysForMonths[] = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 	//Clock increments 1 second every cycle
-	dt->sec += 1;
+	dto->sec += 1;
 
 	//If the second passes 60, set it to 0 and increment min
-	if(dt->sec >= 60){
-		dt->sec = 0;
-		dt->min ++;
+	if(dto->sec >= 60){
+		dto->sec = 0;
+		dto->min += 1;
 	//If the min passes 60, set it to 0 and increment hour
-	} if(dt->min > 60){
-		dt->min = 0;
-		dt->hour ++;
+	} if(dto->min > 60){
+		dto->min = 0;
+		dto->hour += 1;
 	//If the hour passes 24, set it to 0 and increment the day
-	} if(dt->hour > 24){
-		dt->hour = 0;
-		dt->day ++;
+	} if(dto->hour > 24){
+		dto->hour = 0;
+		dto->day += 1;
 	//If the month is <= 12 and there arent enough days in the month
 	//increment the month
-	} if(dt->month <= 12 && dt->day > daysForMonths[dt->month]){
-		dt->day = 1;
-		dt->month ++;
+	} if(dto->month <= 12 && dto->day > daysForMonths[dto->month]){
+		dto->day = 1;
+		dto->month += 1;
 	//If the month passes 12, increment the year, reset the month and day
-	} if(dt->month > 12){
-		dt->month = 1;
-		dt->day = 1;
-		dt->year ++;
+	} if(dto->month > 12){
+		dto->month = 1;
+		dto->day = 1;
+		dto->year += 1;
 	}
 }
 
@@ -43,11 +43,17 @@ void pTime(struct dateTime *dto){
 		sprintf(strHr, "%d", dto->hour);
 	}
 		
-	if(dto->min < 10){sprintf(strMin, "0%d", dto->min);}
-	else{sprintf(strMin, "%d", dto->min);}
+	if(dto->min < 10){
+		sprintf(strMin, "0%d", dto->min);
+	} else{
+		sprintf(strMin, "%d", dto->min);
+	}
 	
-	if(dto->sec < 10){sprintf(strSec, "0%d", dto->sec);}
-	else{sprintf(strSec, "%d", dto->sec);}
+	if(dto->sec < 10){
+		sprintf(strSec, "0%d", dto->sec);
+	}else{
+		sprintf(strSec, "%d", dto->sec);
+	}
 		
 	lcd_pos(1, 0);
 	lcd_puts2(strHr);
@@ -67,14 +73,23 @@ void pDate(struct dateTime *dto){
 	char strMon[5];
 	char strYear[7];
 	
-	if(dto->day < 10){sprintf(strDay, "0%d", dto->day);}
-	else{sprintf(strDay, "%d", dto->day);}
+	if(dto->day < 10){
+		sprintf(strDay, "0%d", dto->day);
+	}else{
+		sprintf(strDay, "%d", dto->day);
+	}
 	
-	if(dto->month < 10){sprintf(strMon, "0%d", dto->month);}
-	else{sprintf(strMon, "%d", dto->month);}
+	if(dto->month < 10){
+		sprintf(strMon, "0%d", dto->month);
+	}else{
+		sprintf(strMon, "%d", dto->month);
+	}
 	
-	if(dto->year < 10){sprintf(strYear, "0%d", dto->year);}
-	else{sprintf(strYear, "%d", dto->year);}
+	if(dto->year < 10){
+		sprintf(strYear, "0%d", dto->year);
+	}else{
+		sprintf(strYear, "%d", dto->year);
+	}
 	
 	lcd_pos(0, 0);
 	lcd_puts2(strMon);
