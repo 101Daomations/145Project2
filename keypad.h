@@ -2,19 +2,16 @@
 #define _KEYPAD_H_
 #include "avr.h"
 
-int waitKeypress(); //wait until keypressed, return num of key pressed.
+int get_key();
 
-int pressed(int k); //checks if key is pressed
+int is_pressed(int r, int c);
 
-void waitKeyRelease(int k); //waits still specific key is released
+void waitKR(); 
 
-int waitPAR(); //waits until a key is pressed and released. Returns num of key pressed
+int waitKP(); 
 
-char mapButton(int k); //maps key's num to char value shown on keypad;
+char mapButton(int k); 
 
 int getButtonAsInt(int k); 
-
-
-
 
 #endif

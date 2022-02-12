@@ -2,7 +2,7 @@
 #include "avr.h"
 #include "lcd.h"
 #include "keypad.h"
-#include "timestuff.h"
+#include "time.h"
 
 int main(void)
 {
@@ -16,19 +16,19 @@ int main(void)
     {
 		//Update Time
 		lcd_clr();
-		pTime(&defaultTime);
-		pDate(&defaultTime);
-		increment_dt(&defaultTime);
+		incrementTime(&defaultTime);
+		updateTime(&defaultTime);
+		updateDate(&defaultTime);
 		avr_wait(1000);
 		
 		//Checks if edit button is pressed
-		if(pressed(4) == 1){
-			waitKeyRelease(4);
-			editTimeMode(&defaultTime);
+		if(is_pressed(13) == 1){
+			waitKR();
+			editTime(&defaultTime);
 		}
-		if(pressed(2) == 1){
-			waitKeyRelease(2);
-			editDateMode(&defaultTime);
+		if(is_pressed(15) == 1){
+			waitKR();
+			editDate(&defaultTime);
 		}
     }
 }

@@ -13,4 +13,4 @@ void lcd_puts1(const char *s);
 
 void lcd_puts2(const char *s);
 
-#endif /* _LCD_H */
+#endif 
