@@ -14,11 +14,9 @@ struct dateTime{
 	int year;
 };
 
-extern int cursor;
-
-void increment_dt(struct dateTime *dto); //increments date/time by 1 second
-void pTime(struct dateTime *dto); //print time to lcd
-void pDate(struct dateTime *dto); //print date to lcd
-void editTimeMode(struct dateTime *mydt); //enter mode to edit time
-void editDateMode(struct dateTime *mydt); //enter mode to edit date
+void increment_dt(struct dateTime *dto);
+void pTime(struct dateTime *dto);
+void pDate(struct dateTime *dto);
+void editTimeMode();
+void editDateMode();
 #endif

@@ -1,14 +1,7 @@
 #include "lcd.h"
 #include "avr.h"
+#include "keypad.h"
 
-int mapIntVal(int k){
-	static int intmap[17] = {0,
-		0, 0, 0, 0,
-		0, 9, 8, 7,
-		0, 6, 5, 4,
-		0, 3, 2, 1};
-	return intmap[k];
-}
 
 char mapButton(int k){
 	//Add bounds checking
@@ -19,6 +12,17 @@ char mapButton(int k){
 	    'A', '3', '2', '1'};
 	return charmap[k];
 }
+
+int getButtonAsInt(int k) {
+	if (mapButton(k) != 'A' and mapButton(k) != 'B' and mapButton(k) != 'C' and mapButton(k) != 'D'
+	    and mapButton(k) != '#' and mapButton(k) != '*') {
+			int num = mapButton(k) - '0';
+			return num
+		}
+	return 0
+}
+
+
 int waitKeypress(){
 	while(1){
 		int count;

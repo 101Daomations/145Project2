@@ -12,7 +12,7 @@ int waitPAR(); //waits until a key is pressed and released. Returns num of key p
 
 char mapButton(int k); //maps key's num to char value shown on keypad;
 
-int mapIntVal(int k); //maps key's num to int value shown on keypad;
+int getButtonAsInt(int k); 
 
 
 

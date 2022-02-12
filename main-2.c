@@ -4,33 +4,31 @@
 #include "keypad.h"
 #include "timestuff.h"
 
-int cursor = 63; //ASCII val for edit mode cursor
-
 int main(void)
 {
 	DDRA = 0xF; //Set cols as input, rows as output
 	PORTA = 0; //Disable col pullups, set rows to LOW
 	lcd_init();
 	
-	struct dateTime * mydt = {0,0,0,1,1,2020};//Default values
+	struct dateTime defaultTime = {0,0,0,1,1,2022};
 	
     while (1) 
     {
 		//Update Time
 		lcd_clr();
-		pTime(&mydt);
-		pDate(&mydt);
-		increment_dt(&mydt);
+		pTime(&defaultTime);
+		pDate(&defaultTime);
+		increment_dt(&defaultTime);
 		avr_wait(1000);
 		
 		//Checks if edit button is pressed
-		if(pressed(4) == 1){ //Checks if * pressed
+		if(pressed(4) == 1){
 			waitKeyRelease(4);
-			editTimeMode(&mydt);
+			editTimeMode(&defaultTime);
 		}
-		if(pressed(2) == 1){//Checks if # pressed
+		if(pressed(2) == 1){
 			waitKeyRelease(2);
-			editDateMode(&mydt);
+			editDateMode(&defaultTime);
 		}
     }
 }
